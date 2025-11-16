@@ -1,55 +1,65 @@
-# 🏡 HOMORA – Property Listing Web Application
+HOMORA – Property Listing Web Application
 
-Homora is a full-stack web application inspired by Airbnb, built using **Node.js**, **Express**, **MongoDB**, **EJS**, **Cloudinary**, and **Mapbox**.  
-Users can create property listings, upload images, add reviews, and view locations on an interactive map.
+Homora is a full-stack web application inspired by Airbnb, built using Node.js, Express, MongoDB, EJS, Cloudinary, and Mapbox.
+It allows users to create and manage property listings, upload images, write reviews, and view locations on an interactive map.
 
----
+Features
+Authentication
 
-## 🚀 Features
+Secure user signup and login
 
-### 🔐 Authentication
-- Secure user signup & login
-- Password hashing using **passport-local-mongoose**
-- Session-based authentication
-- Flash messages for user-friendly notifications
+Password hashing with passport-local-mongoose
 
-### 🏘️ Listings
-- Create, read, update, and delete listings
-- Cloudinary image uploads
-- Price, category, description & location support
-- Fully responsive UI
+Session-based authentication
 
-### ⭐ Reviews System
-- Add/delete reviews
-- JOI validation
-- Average rating support (optional)
+Flash messages for clean user experience
 
-### 🗺️ Mapbox Integration
-- Interactive map for each listing
-- Custom markers + popups
-- Supports geocoding
+Listings
 
-### 🧱 Clean MVC Architecture
-- Modular controllers, routes, and middleware
-- Robust error handling
-- Organized file structure
+Create, read, update, delete listings
 
----
+Upload images to Cloudinary
 
-## 🛠 Tech Stack
+Add price, location, description, and category
 
-**Backend:** Node.js, Express.js  
-**Database:** MongoDB (Mongoose ODM)  
-**Frontend:** EJS, HTML, CSS, Bootstrap  
-**Cloud Storage:** Cloudinary  
-**File Uploads:** Multer  
-**Maps:** Mapbox  
-**Authentication:** Passport.js  
-**Validation:** JOI  
+Fully responsive interface
 
----
+Reviews
 
-## 📁 Project Structure
+Add and delete reviews
+
+JOI schema validation
+
+Map Integration
+
+Mapbox-powered interactive maps
+
+Custom markers and popups
+
+Automatic geolocation rendering
+
+Architecture
+
+Clean MVC folder structure
+
+Modular controllers and routes
+
+Error-handling middleware
+
+Secure configuration with environment variables
+
+Tech Stack
+
+Backend: Node.js, Express
+Database: MongoDB (Mongoose)
+Frontend: EJS, HTML, CSS
+Cloud Storage: Cloudinary
+File Uploads: Multer
+Maps: Mapbox
+Authentication: Passport.js
+Validation: JOI
+
+Project Structure
 HOMORA/
 │
 ├── controllers/
@@ -57,10 +67,10 @@ HOMORA/
 ├── routes/
 ├── public/
 ├── views/
-│ ├── layouts/
-│ ├── includes/
-│ ├── users/
-│ └── listings/
+│   ├── layouts/
+│   ├── includes/
+│   ├── listings/
+│   └── users/
 ├── utils/
 ├── init/
 ├── cloudConfig.js
@@ -68,69 +78,56 @@ HOMORA/
 ├── package.json
 └── .env
 
----
-
-## ⚙️ Installation
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/ALTSKDCODE/homora.git
+Installation
+1. Clone the repository
+git clone https://github.com/your-username/homora.git
 cd homora
-### 2. Install dependencies
+
+2. Install dependencies
 npm install
 
-### 3. Create a .env file and add:
-CLOUD_NAME=your_cloudinary_name
-CLOUD_API_KEY=your_key
-CLOUD_API_SECRET=your_secret
+3. Create a .env file
+CLOUD_NAME=your_cloud_name
+CLOUD_API_KEY=your_api_key
+CLOUD_API_SECRET=your_api_secret
+
 MAP_TOKEN=your_mapbox_token
 SECRET=your_session_secret
 
-### 4. Start the development server
+4. Start the server
 node app.js
 
-🛣 API Routes
-🔐 Auth Routes
-| Method | Route   | Description       |
-| ------ | ------- | ----------------- |
-| GET    | /signup | Show signup form  |
-| POST   | /signup | Create user       |
-| GET    | /login  | Login page        |
-| POST   | /login  | Authenticate user |
-| GET    | /logout | Logout user       |
 
-🏘️ Listing Routes
-| Method | Route         | Description        |
-| ------ | ------------- | ------------------ |
-| GET    | /listings     | All listings       |
-| POST   | /listings     | Create new listing |
-| GET    | /listings/:id | View listing       |
-| PUT    | /listings/:id | Update listing     |
-| DELETE | /listings/:id | Delete listing     |
+or
 
-⭐ Review Routes
-| Method | Route                           |
-| ------ | ------------------------------- |
-| POST   | /listings/:id/reviews           |
-| DELETE | /listings/:id/reviews/:reviewId |
+nodemon app.js
 
-🗺 Map Integration
-
-Each listing includes a Mapbox-powered interactive map:
-
-Zoomable
-
-Marker + popup
-
-Automatic center based on geolocation
-
-📌 Future Enhancements
+API Routes
+Authentication
+Method	Route	Description
+GET	/signup	Signup form
+POST	/signup	Register user
+GET	/login	Login page
+POST	/login	Authenticate user
+GET	/logout	Logout
+Listings
+Method	Route	Description
+GET	/listings	All listings
+POST	/listings	Create listing
+GET	/listings/:id	View listing
+PUT	/listings/:id	Update listing
+DELETE	/listings/:id	Delete listing
+Reviews
+Method	Route
+POST	/listings/:id/reviews
+DELETE	/listings/:id/reviews/:id
+Future Improvements
 
 Multiple image uploads
 
-Advanced search & filters
+Search and filters
 
-User dashboard
+User profile dashboard
 
 Booking system
 
