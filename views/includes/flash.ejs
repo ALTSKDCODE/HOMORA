@@ -1,0 +1,57 @@
+<% if ((success && success.length > 0) || (error && error.length > 0)) { %>
+<div class="flash-container">
+  <% if (success && success.length > 0) { %>
+  <div
+    class="alert alert-success flash-message text-center shadow-sm"
+    role="alert"
+  >
+    <%= success %>
+  </div>
+  <% } %> <% if (error && error.length > 0) { %>
+  <div
+    class="alert alert-danger flash-message text-center shadow-sm"
+    role="alert"
+  >
+    <%= error %>
+  </div>
+  <% } %>
+</div>
+<% } %>
+
+<style>
+  .flash-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px; /* adjust for navbar */
+  }
+
+  .flash-message {
+    width: 50%;
+    border-radius: 10px;
+    font-weight: 500;
+    animation: fadeDown 0.4s ease;
+  }
+
+  @keyframes fadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Auto-hide only if flash exists
+  setTimeout(() => {
+    const flash = document.querySelector('.flash-container');
+    if (flash) {
+      flash.style.transition = 'opacity 0.5s ease';
+      flash.style.opacity = '0';
+      setTimeout(() => flash.remove(), 500);
+    }
+  }, 4000);
+</script>

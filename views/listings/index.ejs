@@ -1,0 +1,193 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  /* ---------- CATEGORY BAR WRAPPER ---------- */
+  .category-bar {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 18px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Hide scrollbar */
+  .category-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ---------- CATEGORY ITEM ---------- */
+  .category-item {
+    text-align: center;
+    margin-right: 28px;
+    opacity: 0.55;
+    transition: 0.25s ease;
+    cursor: pointer;
+  }
+
+  .category-item.active {
+    opacity: 1;
+    font-weight: 600;
+    border-bottom: 2px solid black;
+    padding-bottom: 4px;
+  }
+
+  .category-item:hover {
+    opacity: 1;
+  }
+
+  .category-item i {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .category-item p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  /* ---------- FILTER BUTTON ---------- */
+  .filters-btn {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-weight: 500;
+    background: white;
+    display: flex;
+    align-items: center;
+    margin-right: 18px;
+  }
+
+  .filters-btn i {
+    margin-right: 6px;
+  }
+
+  /* ---------- TOGGLE AREA ---------- */
+  .toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toggle-text {
+    font-size: 0.85rem;
+    color: #6d6d6d;
+  }
+
+  /* Airbnb-style switch */
+  .switch {
+    position: relative;
+    width: 38px;
+    height: 20px;
+  }
+
+  .switch input {
+    display: none;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: #fe424d;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(18px);
+  }
+
+  /* ---------- TAX INFO HIDE ---------- */
+  .tax-info {
+    display: none;
+  }
+</style>
+
+<main class="main-content container">
+  <!-- ===================== CATEGORY BAR ===================== -->
+  <div class="category-bar">
+    <% const cats = [ { icon: "fa-fire", label: "Trending" }, { icon: "fa-bed",
+    label: "Rooms" }, { icon: "fa-city", label: "Iconic Cities" }, { icon:
+    "fa-mountain", label: "Mountains" }, { icon: "fa-fort-awesome", label:
+    "Castles" }, { icon: "fa-person-swimming", label: "Amazing Pools" }, { icon:
+    "fa-campground", label: "Camping" }, { icon: "fa-tractor", label: "Farms" },
+    { icon: "fa-snowflake", label: "Arctic" }, ]; %> <% cats.forEach((c, i) => {
+    %>
+    <div class="category-item <%= i === 0 ? 'active' : '' %>">
+      <i class="fa-solid <%= c.icon %>"></i>
+      <p><%= c.label %></p>
+    </div>
+    <% }) %>
+
+    <!-- Filters button -->
+    <button class="filters-btn">
+      <i class="fa-solid fa-sliders"></i> Filters
+    </button>
+
+    <!-- Toggle -->
+    <div class="toggle-wrapper">
+      <span class="toggle-text">Display total after taxes</span>
+
+      <label class="switch">
+        <input type="checkbox" id="taxToggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ===================== LISTINGS ===================== -->
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4 mt-4">
+    <% for (let listing of listings) { %>
+    <div class="col">
+      <a href="/listings/<%= listing._id %>" class="text-decoration-none">
+        <div class="card border-0 shadow-sm h-100 listing-card">
+          <img
+            src="<%= listing.image.url %>"
+            class="card-img-top listing-img"
+          />
+
+          <div class="card-body px-2 py-3">
+            <p class="fw-semibold text-dark mb-1"><%= listing.title %></p>
+
+            <p class="text-muted mb-0">
+              ₹<%= Number(listing.price).toLocaleString('en-IN') %>
+              <span class="text-secondary">/ night</span>
+              <span class="tax-info">&nbsp; +18% GST</span>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </div>
+</main>
+
+<script>
+  // Toggle tax info visibility
+  const taxToggle = document.getElementById('taxToggle');
+  taxToggle.addEventListener('click', () => {
+    document.querySelectorAll('.tax-info').forEach((el) => {
+      el.style.display = taxToggle.checked ? 'inline' : 'none';
+    });
+  });
+</script>
