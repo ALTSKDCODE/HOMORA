@@ -66,7 +66,7 @@ HOMORA/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/HOMORA.git
+git clone https://github.com/ALTSKDCODE/HOMORA.git
 cd HOMORA
 ```
 
